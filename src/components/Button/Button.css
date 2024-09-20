@@ -1,0 +1,23 @@
+.button-link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    cursor: pointer; 
+    color: rgb(85,26,139);
+}
+
+.button-click {
+    background-color: rgb(189, 177, 237);
+    display: inline-block;
+    text-decoration: none;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    border: none;
+    cursor: pointer; 
+    color: rgb(85,26,139);
+}
