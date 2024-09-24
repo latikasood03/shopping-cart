@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Products from "./pages/Products/Products";
-import LoginPage from "./pages/Login/LoginPage";
+import LoginPage from "./pages/Authorization/LoginPage";
 import Layout from "./components/Layout/Layout";
 import Cart from "./pages/Cart/Cart";
+import SignupPage from "./pages/Authorization/SignupPage";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   }
 
   const loginHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     
     setIsAuth(true);
   }
@@ -32,6 +33,10 @@ function App() {
         {
           path: "/login",
           element: <LoginPage onLogin={loginHandler} />,
+        },
+        {
+          path: "/signup",
+          element: <SignupPage />,
         },
         {
           path: "/products",

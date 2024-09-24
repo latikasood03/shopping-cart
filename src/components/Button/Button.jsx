@@ -17,7 +17,7 @@ function Button({ children, onClick, to, disabled, className }) {
     );
 
   return (
-    <button disabled={disabled} className={className}>
+    <button disabled={disabled} className={['button-submit', `${className}`].join(' ')}>
       {children}
     </button>
   );

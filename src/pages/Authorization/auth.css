@@ -1,0 +1,36 @@
+.auth-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+}
+
+.auth-section h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.auth-form {
+   padding: 3rem;
+   background-color: #f4f4f4;
+   border-radius: 8px;
+   width: auto;
+   box-shadow: 0 2px 8px rgb(0, 0, 0);
+}
+
+.auth-form label {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;  
+    color: #555;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid #949191;
+    border-radius: 5px;
+    font-size: 1rem;
+} 
