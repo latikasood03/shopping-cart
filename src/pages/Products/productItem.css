@@ -1,0 +1,27 @@
+.main-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.product-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 1rem;
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+    text-align: center;
+    list-style-type: none;
+}
+
+.product-btn {
+    background-color: bisque;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+ 
+.product-btn:hover {
+    background-color:rgb(207, 182, 152);
+    cursor: pointer;
+}

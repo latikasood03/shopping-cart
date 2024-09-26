@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "./ProductItem";
 import { io } from "socket.io-client";
 
 const Products = () => {
