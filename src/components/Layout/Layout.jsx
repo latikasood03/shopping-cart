@@ -5,8 +5,12 @@ const Layout = ({isAuth, onLogout}) => {
     return (
         <div>
             <>
-            <Dashboard isAuth={isAuth} onLogout={onLogout} />  
-            <Outlet />
+            <header>
+                <Dashboard isAuth={isAuth} onLogout={onLogout} />  
+            </header>
+            <main>
+                <Outlet />
+            </main>
             </>
         </div>
     )

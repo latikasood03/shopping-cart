@@ -1,13 +1,69 @@
-// import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import "./auth.css"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authActions } from "../../store/authSlice";
 
-const LoginPage = ({onLogin, loading}) => {
+const LoginPage = ({setAutoLogout, loading, isAuth}) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: '',
     })
+
+    const loginHandler = async () => {
+        dispatch(authActions.login());
+        const authData = {
+          email: loginForm.email,
+          password: loginForm.password,
+        };
+        
+        try {
+          const res = await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: authData.email,
+              password: authData.password
+            })
+            // body: JSON.stringify({authData})
+          });
+    
+          if (res.status === 422) {
+            throw new Error('Validation failed.');
+          }
+          if (res.status !== 200 && res.status !== 201) {
+            throw new Error('Could not authenticate you!');
+          }
+    
+          const resData = await res.json();
+          
+          dispatch(authActions.loginSuccess({token: resData.token, userId: resData.userId}));
+          
+          localStorage.setItem('token', resData.token);
+          localStorage.setItem('userId', resData.userId);
+          
+          const remainingMilliseconds = 60 * 60 * 1000;
+          const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+          localStorage.setItem('expiryDate', expiryDate.toISOString());
+          
+          setAutoLogout(remainingMilliseconds);
+        //   navigate('/products', {relative: 'path'});
+        } catch(err) {
+            console.log(err);
+            dispatch(authActions.loginFail(err.message));
+        }
+      }
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/products');
+        }
+    }, [isAuth, navigate]); 
 
     const handleInputChange = (input, value) => {
         setLoginForm((prev) => ({
@@ -19,7 +75,7 @@ const LoginPage = ({onLogin, loading}) => {
     const handleSubmit = (e) => {
         // console.log(e)
         e.preventDefault();
-        onLogin(loginForm);
+        loginHandler();
     }
 
 
