@@ -9,6 +9,8 @@ import AddProduct from "./pages/Products/AddProduct";
 import SignupPage from "./pages/Authorization/SignupPage";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store/authSlice";
+import Orders from "./pages/Orders/Orders";
+// import { CartProvider } from "./context/CartContext";
 
 function App() {
 const dispatch = useDispatch();
@@ -64,11 +66,15 @@ const { isAuth, authLoading, error } = useSelector((state) => state.auth);
           path: "/cart",
           element: <Cart />,
         },
+        {
+          path: "/orders",
+          element: <Orders />
+        }
       ],
     },
   ]);
 
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} /> 
 }
 
 export default App;

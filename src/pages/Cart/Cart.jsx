@@ -1,88 +1,50 @@
-// // import { useNavigate } from "react-router-dom";
-// import Button from "../../components/Button/Button";
-// import { useState } from "react";
-// // import "./productItem.css"
-
-
-// const Cart = () => {
-//     // const navigate = useNavigate();
-//     const [products, setProducts] = useState([
-//         {title: 'Book', description: 'good book', price: 20, id: 1},
-//         {title: 'Chair', description: 'good chair', price: 200, id: 2}
-//     ])
-
-//     // const addToCartHandler = () => {
-//     //     navigate("/cart");
-//     // } 
-
-//     return (
-//         <div className="main-box">
-//             <ul>
-//                 {products.map(product => 
-//                     <li key={product.id} className="product-card">
-//                         <h1>{product.title}</h1>
-//                         <p>${product.price}</p>
-//                         <p>{product.quantity}</p>
-//                         <Button className = "product-btn" >Checkout</Button>
-//                     </li>
-//                 )}
-//             </ul>
-//         </div>
-//     )
-// }
-
-// export default Cart
-
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 import './cart.css';
 import Button from '../../components/Button/Button';
+import useCart from '../../hooks/useCart';
 
 const Cart = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
+  
+  const totalPrice = cart.reduce((total, item) => total + item.productId.price * item.quantity, 0);
 
-  const [cartItems, setCartItems] = useState([
-    { id: 1, title: 'Book', price: 20, quantity: 2 },
-    { id: 2, title: 'Chair', price: 200, quantity: 1 }
-  ]);
-
-  const increaseQuantity = (id) => {
-    setCartItems(cartItems.map(item =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    ));
-  };
-
-  const decreaseQuantity = (id) => {
-    setCartItems(cartItems.map(item =>
-      item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-    ));
-  };
-
-  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-
-  const checkoutHandler = () => {
-    navigate('/checkout');
-  };
-
+  // const checkoutHandler = () => {
+  //   navigate('/checkout');
+//   // };
+//   const checkoutHandler = (product) => {
+//     setCartItems((prevCart) => {
+//         const existingProduct = prevCart.find(item => item._id === product.id);
+//         if (existingProduct) {
+//             return prevCart.map(item =>
+//                 item._id === product.id
+//                     ? { ...item, quantity: item.quantity + 1 }
+//                     : item
+//             );
+//         } else {
+//             return [...prevCart, { ...product, quantity: 1 }];
+//         }
+//     });
+//     navigate('/checkout');
+// };
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>
-      {cartItems.length === 0 ? (
-        <p>No products in cart!</p>
-      ) : (
+      {cart.length > 0 ? (
         <>
           <ul className="cart-list">
-            {cartItems.map(item => (
-              <li key={item.id} className="cart-item">
-                <h2>{item.title}</h2>
-                <p>Price: ${item.price}</p>
+            {cart.map(item => (
+              <li key={item._id} className="cart-item">
+                <h2>{item.productId.title}</h2>
+                <p>Price: ${item.productId.price}</p>
                 <div className="quantity-controls">
-                  <Button onClick={() => decreaseQuantity(item.id)}>-</Button>
+                  <Button onClick={() => decreaseQuantity(item.productId._id)}>-</Button>
                   <span>{item.quantity}</span>
-                  <Button onClick={() => increaseQuantity(item.id)}>+</Button>
+                  <Button onClick={() => increaseQuantity(item.productId._id)}>+</Button>
                 </div>
-                <p>Subtotal: ${item.price * item.quantity}</p>
+                <p>Subtotal: ${item.productId.price * item.quantity}</p>
+                <Button className="checkout-btn" onClick={() => removeFromCart(item.productId._id)}>Delete</Button>
               </li>
             ))}
           </ul>
@@ -90,11 +52,11 @@ const Cart = () => {
           <hr />
           <div className="cart-summary">
             <h2>Total Price: ${totalPrice}</h2>
-            <button className="checkout-btn" onClick={checkoutHandler}>
-              Proceed to Checkout
-            </button>
+            <Button className="checkout-btn">Proceed to Checkout</Button>
           </div>
         </>
+      ) :  (
+        <p>No products in cart!</p>
       )}
     </div>
   );

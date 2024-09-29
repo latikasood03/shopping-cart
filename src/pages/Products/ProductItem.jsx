@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useEffect, useState } from "react";
-import "./productItem.css"
-
+import "./productItem.css";
+import useCart from "../../hooks/useCart";
 
 const ProductItem = () => {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ const ProductItem = () => {
     //     {title: 'Chair', description: 'good chair', price: 200, id: 2},
     // ]);
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const {addToCart} = useCart();
 
     useEffect(() => {
         const fetchProducts = async() => {
@@ -28,12 +28,11 @@ const ProductItem = () => {
         fetchProducts();
     }, [])
 
-    const addToCartHandler = (product) => {
-        // const quantity = quantities[product.id] || 1; 
-        // const newCartItem = { ...product, quantity: parseInt(quantity) };
-        const newCartItem = { ...product};
+    const addToCartHandler = async (product) => {
+        // const newCartItem = { ...product};
 
-        setCart(prevCart => [...prevCart, newCartItem]);
+        // setCart(prevCart => [...prevCart, newCartItem]);
+        await addToCart(product);
         navigate("/cart"); 
     };
 
@@ -46,7 +45,7 @@ const ProductItem = () => {
                             <h1>{product.title}</h1>
                             <p>${product.price}</p>
                             <p>{product.description}</p>
-                            <Button className = "product-btn" onClick={addToCartHandler}>Add To Cart</Button>
+                            <Button className = "product-btn" onClick={() => addToCartHandler(product)}>Add To Cart</Button>
                         </li>
                     )) : (
                         <h1>Fetching products...</h1>

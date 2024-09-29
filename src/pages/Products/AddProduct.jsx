@@ -33,7 +33,7 @@ const AddProduct = () => {
 
             } 
         } catch (err) {
-            console.error("Error:", err);
+            console.error(err);
         }
     };
     
