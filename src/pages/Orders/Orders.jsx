@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import "./orders.css";
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -6,7 +7,7 @@ const Orders = () => {
         <div>
             {orders.length > 0 ? (
             <>
-            <ul className="orders">
+            <ul className="orders-container">
                 {orders.map((order) => (
                 <li className="order-item" key={order._id}>
                     <h1>

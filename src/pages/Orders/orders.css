@@ -1,0 +1,9 @@
+.orders-container {
+    padding: 1rem;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.order-item {
+    padding: 0.5rem 0;
+}

@@ -2,7 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: stretch;
+    gap: 20px;
+    padding: 1rem 2rem;
 }
 
 .product-card {
@@ -13,7 +14,7 @@
     max-width: 95%;
     margin: 1rem;
     text-align: center;
-    list-style-type: none;
+    position: relative;
 }
 
 .add-product-main-box {
@@ -44,6 +45,7 @@
 .add-product-form textarea {
     padding: 1rem;
     font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
@@ -57,5 +59,46 @@
 .product-btn:hover {
     background-color:rgb(207, 182, 152);
     cursor: pointer;
+}
+
+.del-btn {
+    background-color: transparent;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.25rem;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+.del-btn:hover {
+    /* font-size: 2.5rem; */
+    background-color: transparent;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
 }
 

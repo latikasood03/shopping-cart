@@ -4,11 +4,6 @@
     margin: 0 auto;
   }
   
-  .cart-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
   .cart-item {
     border-bottom: 1px solid rgb(193, 190, 190);
     padding: 0.75rem 0;
@@ -44,6 +39,12 @@
   .cart-summary {
     text-align: right;
     margin-top: 20px;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
   
   .cart-btn {

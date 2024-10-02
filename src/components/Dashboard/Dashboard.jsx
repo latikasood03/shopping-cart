@@ -24,6 +24,7 @@ function Dashboard({isAuth}) {
                 <Button to="/products">Products</Button>
                 <Button to="/cart">Cart</Button>
                 <Button to="/orders">Orders</Button>
+                <Button to="/wishlist">Wishlist</Button>
                 <Button onClick={logoutHandler} className="auth">Logout</Button>
                 </>
             ) : (

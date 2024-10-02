@@ -18,8 +18,7 @@ const useCart = () => {
                 }
 
                 const resData = await res.json();
-                setCart(resData.products || []); 
-                console.log(resData.products)
+                setCart(resData.products || []);
             } catch(err) {
                 console.log(err);
             }
@@ -42,32 +41,71 @@ const useCart = () => {
                 throw new Error('Failed to fetch the cart');
             }
             const resData = await res.json();
-            // console.log(resData)
-            
+            console.log(resData)
             setCart(resData.cart.items);
         } catch(err) {
             console.log(err);
         }
     };
 
-    const increaseQuantity = (prodId) => {
-        setCart(prevCart =>
-            prevCart.map(item =>
-                item.productId._id === prodId
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            )
-        );
+    const increaseQuantity = async (prodId) => {
+        try {
+            const token = localStorage.getItem('token');
+            const product = cart.find(item => item.productId._id === prodId);
+
+            if (!product) {
+                throw new Error('Product not found in cart');
+            }
+
+            const newQuantity = product.quantity + 1;
+
+            const res = await fetch(`http://localhost:8080/prod/cart-qty/${prodId}`, {
+                method: 'PUT',
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${token}`, 
+                },
+                body: JSON.stringify({ quantity: newQuantity })
+              })
+
+            if (!res.ok) {
+                throw new Error('Failed to fetch the cart');
+            }
+            const resData = await res.json();
+            setCart(resData.cart.items);
+        } catch(err) {
+            console.log(err);
+        }
     };
 
-    const decreaseQuantity = (prodId) => {
-        setCart(prevCart =>
-            prevCart.map(item =>
-                item.productId._id === prodId && item.quantity > 1
-                    ? { ...item, quantity: item.quantity - 1 }
-                    : item
-            )
-        );
+    const decreaseQuantity = async (prodId) => {
+        try {
+            const token = localStorage.getItem('token');
+            const product = cart.find(item => item.productId._id === prodId);
+
+            if (!product) {
+                throw new Error('Product not found in cart');
+            }
+
+            const newQuantity =  product.quantity > 1 ? product.quantity - 1 : 1;
+
+            const res = await fetch(`http://localhost:8080/prod/cart-qty/${prodId}`, {
+                method: 'PUT',
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${token}`, 
+                },
+                body: JSON.stringify({ quantity: newQuantity })
+              })
+
+            if (!res.ok) {
+                throw new Error('Failed to fetch the cart');
+            }
+            const resData = await res.json();
+            setCart(resData.cart.items);
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     const removeFromCart = async (prodId) => {
@@ -83,9 +121,8 @@ const useCart = () => {
               if(!res.ok) {
                 throw new Error('Failed to fetch the cart');
               }
-            const resData = await res.json();
-            console.log(resData)
-            setCart(resData => resData.filter(item => item.productId._id !== prodId));
+            await res.json();
+            setCart(res => res.filter(item => item.productId._id !== prodId));
             
         } catch(err) {
             console.log(err)

@@ -1,16 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "./store/authSlice";
+
 import Products from "./pages/Products/Products";
 import LoginPage from "./pages/Authorization/LoginPage";
 import Layout from "./components/Layout/Layout";
 import Cart from "./pages/Cart/Cart";
 import AddProduct from "./pages/Products/AddProduct";
 import SignupPage from "./pages/Authorization/SignupPage";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "./store/authSlice";
 import Orders from "./pages/Orders/Orders";
-// import { CartProvider } from "./context/CartContext";
+import Wishlist from "./pages/Wishlist/Wishlist";
+import Checkout from "./pages/Checkout/Checkout";
+import RouteProtection from "./components/RouteProtection/RouteProtection";
 
 function App() {
 const dispatch = useDispatch();
@@ -56,19 +59,27 @@ const { isAuth, authLoading, error } = useSelector((state) => state.auth);
         },
         {
           path: "/products",
-          element: <Products />,
+          element: <RouteProtection><Products /></RouteProtection>,
         },
         {
           path: "/add-product",
-          element: <AddProduct />,
+          element: <RouteProtection><AddProduct /></RouteProtection>,
         },
         {
           path: "/cart",
-          element: <Cart />,
+          element: <RouteProtection><Cart /></RouteProtection>,
         },
         {
           path: "/orders",
-          element: <Orders />
+          element: <RouteProtection><Orders /></RouteProtection>,
+        },
+        {
+          path: "/wishlist",
+          element: <RouteProtection><Wishlist /></RouteProtection>,
+        },
+        {
+          path: "/checkout",
+          element: <RouteProtection><Checkout /></RouteProtection>,
         }
       ],
     },

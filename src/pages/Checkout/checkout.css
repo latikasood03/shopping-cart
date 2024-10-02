@@ -1,0 +1,30 @@
+.checkout-container {
+    padding: 1rem;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.checkout-item {
+    padding: 0.5rem 0;
+}
+
+.checkout-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+}
+
+.checkout-btn {
+    background-color: bisque;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.checkout-btn:hover {
+    background-color:rgb(207, 182, 152);
+    cursor: pointer;
+}
