@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutSuccess = () => {
     const [message, setMessage] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const fetchSuccess = async() => {
@@ -24,20 +23,18 @@ const CheckoutSuccess = () => {
         }
         
         const resData = await res.json();
-        console.log(resData);
         setMessage(resData.message || 'Your order has been placed successfully!');
         
+        navigate('/orders');
     } catch (err) {
-        console.log(err);
         setMessage('Failed to confirm the order. Please try again.');
     }
 };
 
 fetchSuccess();
-}, [location.search]);
+}, [navigate]);
 
 const handleOrders = () => {
-      navigate('/orders');
   };
 
   return (

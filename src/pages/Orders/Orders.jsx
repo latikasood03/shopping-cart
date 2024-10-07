@@ -38,7 +38,7 @@ const Orders = () => {
                 {orders.map((order) => (
                 <li className="order-item" key={order._id}>
                     <h2>
-                    Order - # {order._id} -{' '}
+                    Order - # {order._id}
                     </h2>
                     <div className="orders-products">
                     {order.products.map((p) => (
