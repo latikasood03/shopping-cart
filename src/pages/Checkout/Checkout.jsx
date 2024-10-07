@@ -14,7 +14,7 @@ const Checkout = () => {
         const fetchCart = async() => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await fetch(`http://localhost:8080/prod/cart`, {
+                const res = await fetch(`https://shopping-cart-backend-q9h2.onrender.com/prod/cart`, {
                     headers: {
                       "Authorization": `Bearer ${token}`,
                     }
@@ -44,7 +44,7 @@ const Checkout = () => {
     const handleCheckout = async() => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/prod/checkout', {
+            const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/prod/checkout', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

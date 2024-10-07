@@ -18,7 +18,7 @@ const AddProduct = () => {
         };
     
         try {
-            const res = await fetch("http://localhost:8080/prod/add-product", {
+            const res = await fetch("https://shopping-cart-backend-q9h2.onrender.com/prod/add-product", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

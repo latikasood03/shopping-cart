@@ -11,7 +11,7 @@ const CheckoutSuccess = () => {
       try {
         const token = localStorage.getItem('token');
 
-        const res = await fetch('http://localhost:8080/prod/checkout/success', {
+        const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/prod/checkout/success', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

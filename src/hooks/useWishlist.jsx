@@ -7,7 +7,7 @@ const useWishlist = () => {
         const fetchWishlist = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await fetch('http://localhost:8080/prod/wishlist', {
+                const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/prod/wishlist', {
                     headers: {
                         "Authorization": `Bearer ${token}`, 
                     }
@@ -28,7 +28,7 @@ const useWishlist = () => {
     const addToWishlist = async (product) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:8080/prod/wishlist', {
+            const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/prod/wishlist', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const useWishlist = () => {
     const removeFromWishlist = async (prodId) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:8080/prod/wishlist-delete/${prodId}`, {
+            const res = await fetch(`https://shopping-cart-backend-q9h2.onrender.com/prod/wishlist-delete/${prodId}`, {
                 method: 'DELETE',
                 headers: {
                     "Authorization": `Bearer ${token}`, 

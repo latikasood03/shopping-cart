@@ -19,7 +19,7 @@ const ProductItem = () => {
         const fetchProducts = async(page = 1) => {
             const token = localStorage.getItem('token');
             try {
-                const res = await fetch(`http://localhost:8080/prod/products?page=${page}&limit=${limit}`, {
+                const res = await fetch(`https://shopping-cart-backend-q9h2.onrender.com/prod/products?page=${page}&limit=${limit}`, {
                     headers: {
                       "Authorization": `Bearer ${token}`,
                     }
@@ -50,7 +50,7 @@ const ProductItem = () => {
     const deleteProductHandler = async (prodId) => {
         try{
             const token = localStorage.getItem('token');
-            const res = await fetch(`http://localhost:8080/prod/delete-product/${prodId}`, {
+            const res = await fetch(`https://shopping-cart-backend-q9h2.onrender.com/prod/delete-product/${prodId}`, {
                 method: 'DELETE',
                 headers: {
                     "Authorization": `Bearer ${token}`, 

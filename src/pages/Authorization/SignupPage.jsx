@@ -25,7 +25,7 @@ const SignupPage = ({error, loading, isAuth}) => {
         dispatch(authActions.signup());
     
         try {
-          const res = await fetch('http://localhost:8080/auth/signup', {
+          const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/auth/signup', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
