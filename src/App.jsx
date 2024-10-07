@@ -12,8 +12,10 @@ import AddProduct from "./pages/Products/AddProduct";
 import SignupPage from "./pages/Authorization/SignupPage";
 import Orders from "./pages/Orders/Orders";
 import Wishlist from "./pages/Wishlist/Wishlist";
-import Checkout from "./pages/Checkout/Checkout";
 import RouteProtection from "./components/RouteProtection/RouteProtection";
+import Checkout from "./pages/Checkout/Checkout";
+import CheckoutSuccess from "./pages/Checkout/CheckoutSuccess";
+import CheckoutFail from "./pages/Checkout/CheckoutFail";
 
 function App() {
 const dispatch = useDispatch();
@@ -80,7 +82,15 @@ const { isAuth, authLoading, error } = useSelector((state) => state.auth);
         {
           path: "/checkout",
           element: <RouteProtection><Checkout /></RouteProtection>,
-        }
+        },
+        {
+          path: '/checkout/success',
+          element: <RouteProtection><CheckoutSuccess /></RouteProtection>,
+        },
+        {
+          path: '/checkout/cancel',
+          element: <RouteProtection><CheckoutFail /></RouteProtection>,
+        },
       ],
     },
   ]);

@@ -28,3 +28,9 @@
     background-color:rgb(207, 182, 152);
     cursor: pointer;
 }
+
+.checkout-success-container,
+.checkout-cancel-container {
+  text-align: center;
+  margin-top: 50px;
+}

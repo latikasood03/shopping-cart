@@ -10,6 +10,7 @@
 .wl-btn:hover {
     background-color: transparent;
     cursor: pointer;
+    color: red;
 }
 
 .filled {
