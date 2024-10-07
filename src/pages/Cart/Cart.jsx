@@ -13,21 +13,7 @@ const Cart = () => {
   const checkoutHandler = () => {
     navigate('/checkout');
   };
-//   const checkoutHandler = (product) => {
-//     setCartItems((prevCart) => {
-//         const existingProduct = prevCart.find(item => item._id === product.id);
-//         if (existingProduct) {
-//             return prevCart.map(item =>
-//                 item._id === product.id
-//                     ? { ...item, quantity: item.quantity + 1 }
-//                     : item
-//             );
-//         } else {
-//             return [...prevCart, { ...product, quantity: 1 }];
-//         }
-//     });
-//     navigate('/checkout');
-// };
+  
   return (
     <div className="cart-container">
       <h1>Your Cart</h1>

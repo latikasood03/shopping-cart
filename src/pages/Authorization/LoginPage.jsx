@@ -30,7 +30,6 @@ const LoginPage = ({setAutoLogout, loading, isAuth}) => {
               email: authData.email,
               password: authData.password
             })
-            // body: JSON.stringify({authData})
           });
     
           if (res.status === 422) {
@@ -52,7 +51,6 @@ const LoginPage = ({setAutoLogout, loading, isAuth}) => {
           localStorage.setItem('expiryDate', expiryDate.toISOString());
           
           setAutoLogout(remainingMilliseconds);
-        //   navigate('/products', {relative: 'path'});
         } catch(err) {
             console.log(err);
             dispatch(authActions.loginFail(err.message));
@@ -73,7 +71,6 @@ const LoginPage = ({setAutoLogout, loading, isAuth}) => {
     }
 
     const handleSubmit = (e) => {
-        // console.log(e)
         e.preventDefault();
         loginHandler();
     }

@@ -30,7 +30,6 @@ const SignupPage = ({error, loading, isAuth}) => {
             headers: {
               'Content-Type': 'application/json'
             },
-            // body: JSON.stringify(authData),
             body: JSON.stringify({
               email: authData.email,
               name: authData.name,

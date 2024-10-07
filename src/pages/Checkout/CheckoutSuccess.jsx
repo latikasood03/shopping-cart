@@ -11,15 +11,6 @@ const CheckoutSuccess = () => {
       try {
         const token = localStorage.getItem('token');
 
-        // const params = new URLSearchParams(location.search);
-        //     const sessionId = params.get('sessionId');
-
-        //     console.log(sessionId)
-        // if (!sessionId) {
-        //     setMessage('Invalid session. No order placed.');
-        //     return;
-        // }
-
         const res = await fetch('http://localhost:8080/prod/checkout/success', {
             method: 'GET',
             headers: {
@@ -52,7 +43,6 @@ const handleOrders = () => {
   return (
     <div className="checkout-success-container">
       <h1>{message}</h1>
-      {/* <p>Thank you for your purchase.</p> */}
       <button onClick={handleOrders}>View Orders</button>
     </div>
   );

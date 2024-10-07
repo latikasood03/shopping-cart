@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 const useCart = () => {
     const [cart, setCart] = useState([]);
 
-    // Save the cart to localStorage when it changes
     useEffect(() => {
         const fetchCart = async () => {
             try {

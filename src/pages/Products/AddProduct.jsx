@@ -28,7 +28,6 @@ const AddProduct = () => {
     
             if (res.ok) {
                 await res.json();
-                // console.log(resData);
                 navigate('/products');
 
             } 
