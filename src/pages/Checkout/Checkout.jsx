@@ -11,7 +11,6 @@ const Checkout = () => {
     const [totalSum, setTotalSum] =useState(0);
 
     useEffect(() => {
-        let isSubscribed = true;
         const fetchCart = async() => {
             try {
                 const token = localStorage.getItem('token');
@@ -28,17 +27,14 @@ const Checkout = () => {
           
                   const resData = await res.json();
 
-                  if(isSubscribed) {
-                    setCartProducts(resData.products);
-                    calculateTotal(resData.products);
-                }
+                setCartProducts(resData.products);
+                calculateTotal(resData.products);
             } catch(err) {
                 console.log(err);
             }
         }
 
         fetchCart();
-        return () => { isSubscribed = false };
     }, [])
 
     const calculateTotal = (items) => {

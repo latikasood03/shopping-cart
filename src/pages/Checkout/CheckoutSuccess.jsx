@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CheckoutSuccess = () => {
     const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchSuccess = async() => {
+      const queryParams = new URLSearchParams(location.search);
+      const sessionId = queryParams.get('sessionId');
       try {
         const token = localStorage.getItem('token');
 
-        const res = await fetch('https://shopping-cart-backend-q9h2.onrender.com/prod/checkout/success', {
+        const res = await fetch(`https://shopping-cart-backend-q9h2.onrender.com/prod/checkout/success/${sessionId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -32,7 +35,7 @@ const CheckoutSuccess = () => {
 };
 
 fetchSuccess();
-}, [navigate]);
+}, [navigate, location]);
 
 const handleOrders = () => {
   };
